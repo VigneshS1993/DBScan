@@ -41,6 +41,7 @@ def orderedDBScan(x, y, epsilon):
                 j += 1
             if count == 0:
                 cluster -= 1
+            count = 0
         else:
             j = i + 1
             while(j < len1):
@@ -68,7 +69,10 @@ if __name__ == '__main__':
     for k, col in zip(unique_labels, colors):
         print(col)
     for i in range(len(p)):
-        plt.plot(p[i].x, p[i].y, 'o', markerfacecolor=tuple(colors[p[i].pointType - 1]), markersize=20)
+        if p[i].pointType != -1:
+            plt.plot(p[i].x, p[i].y, 'o', markerfacecolor=tuple(colors[p[i].pointType - 1]), markersize=20)
+        else:
+            plt.plot(p[i].x, p[i].y, 'o', markerfacecolor=tuple([0, 0, 0, 1]), markersize=20)
     plt.show()
         
                     
